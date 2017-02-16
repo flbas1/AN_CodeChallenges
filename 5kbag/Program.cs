@@ -42,16 +42,10 @@ namespace _5kbag
         static void Main(string[] args)
         {
             var list = getList(1024 * (totalMemory + 1));  //5k list of numbers
-
+            int memoryLocation = 0;  // this is the actual memory location we are going to update
             foreach (uint item in list)
             {
-
-                #region "Your task is to make this block work.  make the Poke and Peek methods"
-                int memoryLocation = 0;  // this is the actual memory location we are going to update
-
-                memory.Poke(memoryLocation, item);  //we are going to add the item to the memory container.  you are going to have to write Poke
-                #endregion
-
+                memory.Poke(memoryLocation++, item);  //we are going to add the item to the memory container.  you are going to have to write Poke
 
                 if (memory.Length > 1024 * totalMemory)
                     throw new OutOfMemoryException();
