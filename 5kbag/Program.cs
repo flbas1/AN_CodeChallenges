@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace _5kbag
 {
     class Program
     {
-       
+
         #region "defaults for project.  This area should be ok"
         /// <summary>
         /// how much memory we are able to use
@@ -23,7 +22,7 @@ namespace _5kbag
         /// </summary>
         /// <param name="elements"></param>
         /// <returns></returns>
-        private static IList getList(int elements)
+        private static List<uint> getList(int elements)
         {
             Random rnd = new Random();
             var retVal = new List<uint>();
@@ -43,16 +42,10 @@ namespace _5kbag
         static void Main(string[] args)
         {
             var list = getList(1024 * (totalMemory + 1));  //5k list of numbers
-
-            foreach (var item in list)
+            int memoryLocation = 0;  // this is the actual memory location we are going to update
+            foreach (uint item in list)
             {
-
-                #region "Your task is to make this block work.  make the Poke and Peek methods"
-                int memoryLocation = 0;  // this is the actual memory location we are going to update
-
-                memory.Poke(memoryLocation, item);  //we are going to add the item to the memory container.  you are going to have to write Poke
-                #endregion
-
+                memory.Poke(memoryLocation++, item);  //we are going to add the item to the memory container.  you are going to have to write Poke
 
                 if (memory.Length > 1024 * totalMemory)
                     throw new OutOfMemoryException();
@@ -60,7 +53,7 @@ namespace _5kbag
 
             //done.  now lets test
             for (var loc = 0; loc < list.Count - 1; loc++)
-                if (list[loc] != memory.Peek[loc])  //please make this line work also
+                if (list[loc] != memory.Peek(loc))  //please make this line work also
                     throw new NotFiniteNumberException();
             Console.WriteLine("Success!");
 
