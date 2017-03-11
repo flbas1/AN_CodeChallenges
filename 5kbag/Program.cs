@@ -29,7 +29,7 @@ namespace _5kbag
             int randomNumber = 0;
             for (int x = 0; x < elements; x++)
             {
-                randomNumber = randomNumber + rnd.Next(9);
+                randomNumber = randomNumber + rnd.Next(8) + 1;
                 if (randomNumber > 65535)
                     return retVal;
                 retVal.Add(randomNumber);
@@ -58,7 +58,7 @@ namespace _5kbag
                     throw new NotFiniteNumberException();
 
             Console.WriteLine("Success!");
-            Console.WriteLine(1024 * totalMemory);
+            Console.WriteLine(list.Count);
             Console.WriteLine(memory.Length);
             Console.ReadLine();
 
